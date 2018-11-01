@@ -8,13 +8,26 @@
 
 import UIKit
 
+
 class ViewController: UIViewController {
 
+    @IBOutlet weak var actionBarHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var actionBarTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var playerVideoView: PlayerVideoView!
+    
     
     @IBOutlet weak var contentCollectionView: UICollectionView!
+    
+    var heightActionBar: CGFloat!
+    var check: Bool = false
+    var firstOffset: CGFloat!
+    var oldTopCst: CGFloat!
+   
     override func viewDidLoad() {
         super.viewDidLoad()
+        playerVideoView.frame.origin.y = UIScreen.main.bounds.height
+        print(playerVideoView.frame.origin.y)
+        heightActionBar = actionBarHeightConstraint.constant
         contentCollectionView.register(UINib.init(nibName: "ContentCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ContentCollectionViewCell")
     }
 
@@ -41,24 +54,47 @@ extension ViewController: UICollectionViewDataSource,UICollectionViewDelegate, U
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        
+        playerVideoView.show()
         
         
     }
 }
 
+
 extension ViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        firstOffset = scrollView.contentOffset.y
+        
+        oldTopCst = actionBarTopConstraint.constant
         
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        actionBarTopConstraint.constant = -scrollView.contentOffset.y
-//        print(actionBarTopConstraint.constant)
-    }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if check {
+            return
+        }
         
+        NSObject.cancelPreviousPerformRequests(withTarget: self)
+        let offsetY = scrollView.contentOffset.y
+        var delta = offsetY - firstOffset - oldTopCst
+        delta = min(delta, heightActionBar)
+        delta = max(0, delta)
+        actionBarTopConstraint.constant = -delta
+        
+        perform(#selector(scrollViewDidEndDecelerating(_:)), with: scrollView, afterDelay: 0.1)
+    }
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        check = true
+        
+        if actionBarTopConstraint.constant > -heightActionBar/2 {
+            actionBarTopConstraint.constant = 0
+        } else {
+            actionBarTopConstraint.constant = -heightActionBar
+        }
+        UIView.animate(withDuration: 0.18) {
+            self.view.layoutIfNeeded()
+        }
+        check = false
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
@@ -66,10 +102,12 @@ extension ViewController: UIScrollViewDelegate {
             actionBarTopConstraint.constant = -49
         } else if velocity.y < 0 {
             actionBarTopConstraint.constant = 0
-            print("??")
-            
+
         }
-        print(velocity.y)
+        UIView.animate(withDuration: 0.18) {
+            self.view.layoutIfNeeded()
+        }
+
     }
     
 }
