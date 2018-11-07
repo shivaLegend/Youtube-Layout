@@ -32,6 +32,17 @@ class PlayerVideoView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        bottomView.register(UINib.init(nibName: "AdCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AdCollectionViewCell")
+
+      bottomView.register(UINib.init(nibName: "TitleCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TitleCollectionViewCell")
+
+      bottomView.register(UINib.init(nibName: "SelectionBarCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SelectionBarCollectionViewCell")
+
+      bottomView.register(UINib.init(nibName: "SubscribeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SubscribeCollectionViewCell")
+
+      bottomView.register(UINib.init(nibName: "AutoPlayCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AutoPlayCollectionViewCell")
+      
+      bottomView.register(UINib.init(nibName: "VideoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "VideoCollectionViewCell")
         let viewTemp: UIView = Bundle.main.loadNibNamed("PlayerVideoView", owner: self)?[0] as! UIView
         viewTemp.translatesAutoresizingMaskIntoConstraints = false
         
