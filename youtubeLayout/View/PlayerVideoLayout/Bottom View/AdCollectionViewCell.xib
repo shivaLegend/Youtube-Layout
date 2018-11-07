@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AdCollectionViewCell" id="gTV-IL-0wX" customClass="AdCollectionViewCell" customModule="youtubeLayout" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="P9F-Ij-epC">
+                        <rect key="frame" x="17" y="12.5" width="35" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="P9F-Ij-epC" secondAttribute="height" multiplier="1:1" id="Gwc-FO-sgZ"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rise of civilazition" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4D0-Ov-0o3">
+                        <rect key="frame" x="64" y="12.5" width="116" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="advertise" translatesAutoresizingMaskIntoConstraints="NO" id="PPW-2N-MYJ">
+                        <rect key="frame" x="64" y="31.5" width="21" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="TwM-Up-ZwY"/>
+                            <constraint firstAttribute="width" constant="21" id="aqu-ze-sPx"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FPz-J2-abs">
+                        <rect key="frame" x="295" y="12.5" width="70" height="32"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="3vA-Zc-XSA"/>
+                            <constraint firstAttribute="height" constant="32" id="zU8-oF-3C7"/>
+                        </constraints>
+                        <state key="normal" title="INSTALL">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pES-Eo-TAL">
+                        <rect key="frame" x="384" y="19" width="13" height="22"/>
+                        <state key="normal" image="more"/>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hRD-PJ-lcO" userLabel="View Line">
+                        <rect key="frame" x="0.0" y="59" width="414" height="1"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="owY-CA-vvB"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <color key="backgroundColor" red="0.95686274509803926" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="4D0-Ov-0o3" firstAttribute="top" secondItem="P9F-Ij-epC" secondAttribute="top" id="4eO-9Z-2ou"/>
+                <constraint firstItem="PPW-2N-MYJ" firstAttribute="bottom" secondItem="P9F-Ij-epC" secondAttribute="bottom" id="54B-yC-Lnn"/>
+                <constraint firstAttribute="bottom" secondItem="hRD-PJ-lcO" secondAttribute="bottom" id="Bv6-j2-NRX"/>
+                <constraint firstAttribute="trailing" secondItem="pES-Eo-TAL" secondAttribute="trailing" constant="17" id="H0b-1y-gFa"/>
+                <constraint firstItem="pES-Eo-TAL" firstAttribute="leading" secondItem="FPz-J2-abs" secondAttribute="trailing" constant="19" id="H5c-Yc-VvD"/>
+                <constraint firstAttribute="trailing" secondItem="hRD-PJ-lcO" secondAttribute="trailing" id="Jq3-dT-Kv2"/>
+                <constraint firstItem="FPz-J2-abs" firstAttribute="top" secondItem="P9F-Ij-epC" secondAttribute="top" id="MmC-A8-P4T"/>
+                <constraint firstItem="P9F-Ij-epC" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="35:60" id="Pfa-xU-GQX"/>
+                <constraint firstItem="PPW-2N-MYJ" firstAttribute="leading" secondItem="4D0-Ov-0o3" secondAttribute="leading" id="QRE-82-QbL"/>
+                <constraint firstItem="P9F-Ij-epC" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="17" id="gw3-0Y-du9"/>
+                <constraint firstItem="pES-Eo-TAL" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="lgT-AM-WMw"/>
+                <constraint firstItem="P9F-Ij-epC" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="rFc-jH-JEe"/>
+                <constraint firstItem="hRD-PJ-lcO" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="vLo-Ab-HKI"/>
+                <constraint firstItem="4D0-Ov-0o3" firstAttribute="leading" secondItem="P9F-Ij-epC" secondAttribute="trailing" constant="12" id="wb5-B6-PUV"/>
+            </constraints>
+            <size key="customSize" width="371" height="155"/>
+            <point key="canvasLocation" x="308.80000000000001" y="118.74062968515743"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="advertise" width="12" height="12"/>
+        <image name="more" width="13" height="13"/>
+        <image name="user" width="25" height="25"/>
+    </resources>
+</document>
