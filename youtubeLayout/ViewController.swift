@@ -9,11 +9,13 @@
 import UIKit
 
 
+
 class ViewController: UIViewController {
 
     @IBOutlet weak var actionBarHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var actionBarTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var playerVideoView: PlayerVideoView!
+    @IBOutlet weak var tabbedBarView: TabbedBarView!
     
     
     @IBOutlet weak var contentCollectionView: UICollectionView!
@@ -29,6 +31,9 @@ class ViewController: UIViewController {
         print(playerVideoView.frame.origin.y)
         heightActionBar = actionBarHeightConstraint.constant
         contentCollectionView.register(UINib.init(nibName: "ContentCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ContentCollectionViewCell")
+        
+        playerVideoView.delegate = self
+        
     }
 
 
@@ -109,6 +114,25 @@ extension ViewController: UIScrollViewDelegate {
         }
 
     }
+    
+}
+
+extension ViewController: PlayerVideoViewDelegate {
+    func playerVideo(offset: CGFloat) {
+        tabbedBarView.frame.origin.y = offset
+    }
+    
+    func playerVideo(state: PlayerVideoState) {
+        if state == .Full {
+            tabbedBarView.frame.origin.y = UIScreen.main.bounds.height
+        } else {
+            tabbedBarView.frame.origin.y = UIScreen.main.bounds.height - 49
+        }
+        UIView.animate(withDuration: 0.18) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
     
 }
 

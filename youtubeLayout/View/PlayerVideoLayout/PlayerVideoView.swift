@@ -8,17 +8,26 @@
 
 import UIKit
 
+
 class PlayerVideoView: UIView {
     
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var videoView: UIView!
     @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var closeImageView: UIImageView!
     
     @IBOutlet weak var topViewHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var videoViewWidthConstraint: NSLayoutConstraint!
     
     
     var firstPosition: CGFloat!
     var heightOrigin: CGFloat!
+    var originTopViewHeight: CGFloat!
+    var witdhOrigin: CGFloat!
+    var delegate: PlayerVideoViewDelegate?
+    var imageView: UIImageView!
+    var limitHeightVideoView: CGFloat!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,7 +42,29 @@ class PlayerVideoView: UIView {
         addConstraint(NSLayoutConstraint(item: viewTemp, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1, constant: 0))
         addConstraint(NSLayoutConstraint(item: viewTemp, attribute: .right, relatedBy: .equal, toItem: self, attribute: .right, multiplier: 1, constant: 0))
         
+        videoView.frame = CGRect(x: 0, y: 0, width: topView.frame.width, height: topView.frame.height)
+        
+        let image = UIImage(named: "view cell")
+        imageView = UIImageView(image: image!)
+        videoView.addSubview(imageView)
+        imageView.frame = CGRect(x: 0, y: 0, width: videoView.frame.width, height: videoView.frame.height)
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        
         heightOrigin = UIScreen.main.bounds.height
+        witdhOrigin = UIScreen.main.bounds.width
+        limitHeightVideoView = 9*witdhOrigin/(16*3)
+        
+        print(limitHeightVideoView)
+        //Set for video 16:9
+        videoViewWidthConstraint.constant = witdhOrigin
+        topViewHeightConstraint.constant = 9*witdhOrigin/16
+        
+        originTopViewHeight = 9*witdhOrigin/16
+        //add action for close uiimageview
+        let tapClose = UITapGestureRecognizer(target: self, action: #selector(hide))
+        closeImageView.addGestureRecognizer(tapClose)
+        closeImageView.isUserInteractionEnabled = true
     }
     
     func show() {
@@ -44,14 +75,23 @@ class PlayerVideoView: UIView {
         
     }
     
-    func hide() {
+    @objc func hide() {
+        self.frame = UIScreen.main.bounds
+        self.isHidden = true
+        self.frame.origin.y = self.frame.height
         
     }
     
     func goFull() {
+        self.topViewHeightConstraint.constant = originTopViewHeight
+        videoViewWidthConstraint.constant = witdhOrigin
+        UIView.animate(withDuration: 0.18) {
+            self.layoutIfNeeded()
+        }
         
-        self.topViewHeightConstraint.constant = 235
-//        delegate?.videoView(self, animation: .Full, duration: 0.18, dest: CGPoint.init(x: 0, y: 0))
+        imageView.frame = CGRect(x: 0, y: 0, width: videoView.frame.width, height: topViewHeightConstraint.constant)//tai sao set cha no ma con can phai set subvview ????
+        
+        delegate?.playerVideo(state: PlayerVideoState.Full)
         UIView.animate(withDuration: 0.18) {
             self.bottomView.alpha = 1
             self.frame.origin.y = 0
@@ -63,11 +103,23 @@ class PlayerVideoView: UIView {
     
     func goMini() {
         self.topViewHeightConstraint.constant = 54
-//        delegate?.videoView(self, animation: .Mini, duration: 0.18, dest: CGPoint.init(x: 0, y: getMaxY()))
+        
+        //why not animate video width
+        self.videoViewWidthConstraint.constant = self.witdhOrigin/3
+        print(self.witdhOrigin/3)
+        UIView.animate(withDuration: 0.18) {
+            self.layoutIfNeeded()
+        }
+//        closeView.isHidden = false
+        
+        delegate?.playerVideo(state: PlayerVideoState.Mini)
+        
+        imageView.frame = CGRect(x: 0, y: 0, width: videoView.frame.width, height: topViewHeightConstraint.constant)
         UIView.animate(withDuration: 0.18) {
             self.bottomView.alpha = 0
             self.frame.origin.y = self.getMaxY()
             self.layoutIfNeeded()
+            self.videoView.layoutIfNeeded()
             
         }
         
@@ -80,13 +132,24 @@ class PlayerVideoView: UIView {
             break
         case .changed:
             let offset = sender.translation(in: self.superview)
-            let y  = offset.y + firstPosition
-            self.frame.origin.y = y
+            var y  = offset.y + firstPosition
+            
             let maxY = getMaxY()
+            y = max(0,y)
+            y = min(maxY,y)
+            self.frame.origin.y = y
             let t = y/maxY
-            topViewHeightConstraint.constant = 235 - t*(235 - 54)
+            let offSetForTabbed = heightOrigin - t*(heightOrigin - (heightOrigin - 49))
+            delegate?.playerVideo(offset: offSetForTabbed)
+            topViewHeightConstraint.constant = originTopViewHeight - t*(originTopViewHeight - 54)
+            imageView.frame = CGRect(x: 0, y: 0, width: videoView.frame.width, height: topViewHeightConstraint.constant)
             bottomView.alpha = 1 - t*(1-0)
             
+            if topViewHeightConstraint.constant <= 73 {
+                let tyle = (73 - topViewHeightConstraint.constant)/(73 - 54)
+                let width = witdhOrigin - tyle*(witdhOrigin - witdhOrigin/3)
+                videoViewWidthConstraint.constant = width
+            }
             break
         case .ended,.cancelled,.failed:
             let velocity = sender.velocity(in: self.superview)

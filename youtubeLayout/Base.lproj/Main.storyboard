@@ -94,6 +94,7 @@
                         <outlet property="actionBarTopConstraint" destination="Em8-P4-l0n" id="JsS-oI-N8A"/>
                         <outlet property="contentCollectionView" destination="VtL-NE-yw9" id="VNR-xf-XDd"/>
                         <outlet property="playerVideoView" destination="4aN-HB-lvO" id="0j5-WK-fZm"/>
+                        <outlet property="tabbedBarView" destination="VYh-kT-xYF" id="hgc-cQ-bTR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
