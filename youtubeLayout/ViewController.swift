@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         playerVideoView.frame.origin.y = UIScreen.main.bounds.height
-        print(playerVideoView.frame.origin.y)
+        
         heightActionBar = actionBarHeightConstraint.constant
         contentCollectionView.register(UINib.init(nibName: "ContentCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ContentCollectionViewCell")
         
