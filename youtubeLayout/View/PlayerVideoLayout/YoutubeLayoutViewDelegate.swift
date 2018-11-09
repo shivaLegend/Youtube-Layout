@@ -12,7 +12,7 @@ enum PlayerVideoState {
     case Full, Mini
 }
 
-protocol PlayerVideoViewDelegate {
+protocol YoutubeLayoutViewDelegate {
     func playerVideo(state: PlayerVideoState)
     func playerVideo(offset: CGFloat)
 }

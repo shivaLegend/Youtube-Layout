@@ -9,12 +9,13 @@
 import UIKit
 
 
-class PlayerVideoView: UIView {
+class YoutubeLayoutView: UIView {
     
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var videoView: UIView!
-    @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var bottomView: UICollectionView!
     @IBOutlet weak var closeImageView: UIImageView!
+    @IBOutlet weak var detailMiniView: UIView!
     
     @IBOutlet weak var topViewHeightConstraint: NSLayoutConstraint!
     
@@ -25,25 +26,15 @@ class PlayerVideoView: UIView {
     var heightOrigin: CGFloat!
     var originTopViewHeight: CGFloat!
     var witdhOrigin: CGFloat!
-    var delegate: PlayerVideoViewDelegate?
+    var delegate: YoutubeLayoutViewDelegate?
     var imageView: UIImageView!
     var heightMiniVideoView: CGFloat!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-//        bottomView.register(UINib.init(nibName: "AdCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AdCollectionViewCell")
-//
-//      bottomView.register(UINib.init(nibName: "TitleCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TitleCollectionViewCell")
-//
-//      bottomView.register(UINib.init(nibName: "SelectionBarCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SelectionBarCollectionViewCell")
-//
-//      bottomView.register(UINib.init(nibName: "SubscribeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SubscribeCollectionViewCell")
-//
-//      bottomView.register(UINib.init(nibName: "AutoPlayCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AutoPlayCollectionViewCell")
-//
-//      bottomView.register(UINib.init(nibName: "VideoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "VideoCollectionViewCell")
-        let viewTemp: UIView = Bundle.main.loadNibNamed("PlayerVideoView", owner: self)?[0] as! UIView
+        
+        let viewTemp: UIView = Bundle.main.loadNibNamed("YoutubeLayoutView", owner: self)?[0] as! UIView
         viewTemp.translatesAutoresizingMaskIntoConstraints = false
         
         self.addSubview(viewTemp)
@@ -53,8 +44,20 @@ class PlayerVideoView: UIView {
         addConstraint(NSLayoutConstraint(item: viewTemp, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1, constant: 0))
         addConstraint(NSLayoutConstraint(item: viewTemp, attribute: .right, relatedBy: .equal, toItem: self, attribute: .right, multiplier: 1, constant: 0))
         
-//        videoView.frame = CGRect(x: 0, y: 0, width: topView.frame.width, height: topView.frame.height)
+        bottomView.register(UINib.init(nibName: "AdCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AdCollectionViewCell")
         
+        bottomView.register(UINib.init(nibName: "TitleCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TitleCollectionViewCell")
+        
+        bottomView.register(UINib.init(nibName: "SelectionBarCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SelectionBarCollectionViewCell")
+        
+        bottomView.register(UINib.init(nibName: "SubscribeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SubscribeCollectionViewCell")
+        
+        bottomView.register(UINib.init(nibName: "AutoPlayCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AutoPlayCollectionViewCell")
+        
+        bottomView.register(UINib.init(nibName: "VideoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "VideoCollectionViewCell")
+        
+        bottomView.delegate = self
+        bottomView.dataSource = self
         let image = UIImage(named: "view cell")
         imageView = UIImageView(image: image!)
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -84,6 +87,8 @@ class PlayerVideoView: UIView {
         closeImageView.isUserInteractionEnabled = true
     }
     
+    
+    
     func show() {
         self.frame = UIScreen.main.bounds
         self.isHidden = false
@@ -102,7 +107,9 @@ class PlayerVideoView: UIView {
     func goFull() {
         self.topViewHeightConstraint.constant = originTopViewHeight
         videoViewWidthConstraint.constant = witdhOrigin
+        
         UIView.animate(withDuration: 0.18) {
+            self.detailMiniView.alpha = 0
             self.layoutIfNeeded()
         }
         
@@ -125,6 +132,7 @@ class PlayerVideoView: UIView {
         delegate?.playerVideo(state: PlayerVideoState.Mini)
         UIView.animate(withDuration: 0.18) {
             self.bottomView.alpha = 0
+            self.detailMiniView.alpha = 1
             self.frame.origin.y = self.getMaxY()
             self.layoutIfNeeded()
         }
@@ -149,11 +157,13 @@ class PlayerVideoView: UIView {
             topViewHeightConstraint.constant = originTopViewHeight - t*(originTopViewHeight - heightMiniVideoView)
             bottomView.alpha = 1 - t*(1-0)
             
-            if topViewHeightConstraint.constant <= heightMiniVideoView*2{
-                let tyle = (heightMiniVideoView*2 - topViewHeightConstraint.constant)/(heightMiniVideoView*2 - heightMiniVideoView)
+            if topViewHeightConstraint.constant <= heightMiniVideoView*1.3{
+                let tyle = (heightMiniVideoView*1.3 - topViewHeightConstraint.constant)/(heightMiniVideoView*1.3 - heightMiniVideoView)
                 let width = witdhOrigin - tyle*(witdhOrigin - heightMiniVideoView*16/9)
+                detailMiniView.alpha = 0 - (0 - 1)*tyle
                 videoViewWidthConstraint.constant = width
             } else {
+                detailMiniView.alpha = 0
                 videoViewWidthConstraint.constant = witdhOrigin
             }
             break
@@ -187,4 +197,59 @@ class PlayerVideoView: UIView {
     }
 }
 
+extension YoutubeLayoutView: UICollectionViewDataSource,UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if indexPath.row == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AdCollectionViewCell", for: indexPath)
+            
+            return cell
+        } else if indexPath.row == 4 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AutoPlayCollectionViewCell", for: indexPath)
+            
+            return cell
+        } else if indexPath.row == 2{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SelectionBarCollectionViewCell", for: indexPath)
+            
+            return cell
+        } else if indexPath.row == 3{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SubscribeCollectionViewCell", for: indexPath)
+            
+            return cell
+        } else if indexPath.row == 1{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TitleCollectionViewCell", for: indexPath)
+            
+            return cell
+        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VideoCollectionViewCell", for: indexPath)
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if indexPath.row == 0 {
+            return CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width*52/414)
+        } else if indexPath.row == 1 {
+            return CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width*100/414)
+        } else if indexPath.row == 2{
+            return CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width*52/414)
+        } else if indexPath.row == 3{
+            return CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width*52/414)
+        } else if indexPath.row == 4{
+            return CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width*52/414)
+        }
+        
+        return CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width*108/414)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+//        playerVideoView.show()
+        
+        
+    }
+}
 

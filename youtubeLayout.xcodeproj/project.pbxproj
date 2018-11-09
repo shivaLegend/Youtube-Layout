@@ -7,16 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CF01E814218BE17B00F8A438 /* PlayerVideoViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF01E813218BE17B00F8A438 /* PlayerVideoViewDelegate.swift */; };
-		CF0D4F7E218AA89F00C5523D /* PlayerVideoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF0D4F7D218AA89F00C5523D /* PlayerVideoView.xib */; };
-		CF0D4F80218AA8AF00C5523D /* PlayerVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0D4F7F218AA8AF00C5523D /* PlayerVideoView.swift */; };
+		CF01E814218BE17B00F8A438 /* YoutubeLayoutViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF01E813218BE17B00F8A438 /* YoutubeLayoutViewDelegate.swift */; };
+		CF0D4F7E218AA89F00C5523D /* YoutubeLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF0D4F7D218AA89F00C5523D /* YoutubeLayoutView.xib */; };
+		CF0D4F80218AA8AF00C5523D /* YoutubeLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0D4F7F218AA8AF00C5523D /* YoutubeLayoutView.swift */; };
 		CFCB407F2193C98E00226F71 /* SelectionBarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFCB40712193C98E00226F71 /* SelectionBarCollectionViewCell.xib */; };
-		CFCB40802193C98E00226F71 /* YoutubeLayoutContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB40722193C98E00226F71 /* YoutubeLayoutContentView.swift */; };
 		CFCB40812193C98E00226F71 /* TitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB40732193C98E00226F71 /* TitleCollectionViewCell.swift */; };
 		CFCB40822193C98E00226F71 /* SubscribeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB40742193C98E00226F71 /* SubscribeCollectionViewCell.swift */; };
 		CFCB40832193C98E00226F71 /* AdCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB40752193C98E00226F71 /* AdCollectionViewCell.swift */; };
 		CFCB40842193C98E00226F71 /* VideoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFCB40762193C98E00226F71 /* VideoCollectionViewCell.xib */; };
-		CFCB40852193C98E00226F71 /* YoutubeLayoutContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFCB40772193C98E00226F71 /* YoutubeLayoutContentView.xib */; };
 		CFCB40862193C98E00226F71 /* AutoPlayCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB40782193C98E00226F71 /* AutoPlayCollectionViewCell.swift */; };
 		CFCB40872193C98E00226F71 /* AdCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFCB40792193C98E00226F71 /* AdCollectionViewCell.xib */; };
 		CFCB40882193C98E00226F71 /* AutoPlayCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFCB407A2193C98E00226F71 /* AutoPlayCollectionViewCell.xib */; };
@@ -38,16 +36,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CF01E813218BE17B00F8A438 /* PlayerVideoViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerVideoViewDelegate.swift; sourceTree = "<group>"; };
-		CF0D4F7D218AA89F00C5523D /* PlayerVideoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerVideoView.xib; sourceTree = "<group>"; };
-		CF0D4F7F218AA8AF00C5523D /* PlayerVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerVideoView.swift; sourceTree = "<group>"; };
+		CF01E813218BE17B00F8A438 /* YoutubeLayoutViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeLayoutViewDelegate.swift; sourceTree = "<group>"; };
+		CF0D4F7D218AA89F00C5523D /* YoutubeLayoutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YoutubeLayoutView.xib; sourceTree = "<group>"; };
+		CF0D4F7F218AA8AF00C5523D /* YoutubeLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeLayoutView.swift; sourceTree = "<group>"; };
 		CFCB40712193C98E00226F71 /* SelectionBarCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectionBarCollectionViewCell.xib; sourceTree = "<group>"; };
-		CFCB40722193C98E00226F71 /* YoutubeLayoutContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeLayoutContentView.swift; sourceTree = "<group>"; };
 		CFCB40732193C98E00226F71 /* TitleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleCollectionViewCell.swift; sourceTree = "<group>"; };
 		CFCB40742193C98E00226F71 /* SubscribeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribeCollectionViewCell.swift; sourceTree = "<group>"; };
 		CFCB40752193C98E00226F71 /* AdCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdCollectionViewCell.swift; sourceTree = "<group>"; };
 		CFCB40762193C98E00226F71 /* VideoCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoCollectionViewCell.xib; sourceTree = "<group>"; };
-		CFCB40772193C98E00226F71 /* YoutubeLayoutContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YoutubeLayoutContentView.xib; sourceTree = "<group>"; };
 		CFCB40782193C98E00226F71 /* AutoPlayCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoPlayCollectionViewCell.swift; sourceTree = "<group>"; };
 		CFCB40792193C98E00226F71 /* AdCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdCollectionViewCell.xib; sourceTree = "<group>"; };
 		CFCB407A2193C98E00226F71 /* AutoPlayCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutoPlayCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -85,9 +81,9 @@
 			isa = PBXGroup;
 			children = (
 				CF98F8252192DA3C00BADF37 /* Bottom View */,
-				CF0D4F7D218AA89F00C5523D /* PlayerVideoView.xib */,
-				CF0D4F7F218AA8AF00C5523D /* PlayerVideoView.swift */,
-				CF01E813218BE17B00F8A438 /* PlayerVideoViewDelegate.swift */,
+				CF0D4F7D218AA89F00C5523D /* YoutubeLayoutView.xib */,
+				CF0D4F7F218AA8AF00C5523D /* YoutubeLayoutView.swift */,
+				CF01E813218BE17B00F8A438 /* YoutubeLayoutViewDelegate.swift */,
 			);
 			path = PlayerVideoLayout;
 			sourceTree = "<group>";
@@ -107,8 +103,6 @@
 				CFCB407D2193C98E00226F71 /* TitleCollectionViewCell.xib */,
 				CFCB407E2193C98E00226F71 /* VideoCollectionViewCell.swift */,
 				CFCB40762193C98E00226F71 /* VideoCollectionViewCell.xib */,
-				CFCB40722193C98E00226F71 /* YoutubeLayoutContentView.swift */,
-				CFCB40772193C98E00226F71 /* YoutubeLayoutContentView.xib */,
 			);
 			path = "Bottom View";
 			sourceTree = "<group>";
@@ -223,11 +217,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF0D4F7E218AA89F00C5523D /* PlayerVideoView.xib in Resources */,
+				CF0D4F7E218AA89F00C5523D /* YoutubeLayoutView.xib in Resources */,
 				CFFC73F3218958C4005ED9E5 /* LaunchScreen.storyboard in Resources */,
 				CFCB40842193C98E00226F71 /* VideoCollectionViewCell.xib in Resources */,
 				CFFC73FD21895C36005ED9E5 /* ActionBarView.xib in Resources */,
-				CFCB40852193C98E00226F71 /* YoutubeLayoutContentView.xib in Resources */,
 				CFCB40872193C98E00226F71 /* AdCollectionViewCell.xib in Resources */,
 				CFFC740121896A53005ED9E5 /* TabbedBarView.xib in Resources */,
 				CFFC73F0218958C4005ED9E5 /* Assets.xcassets in Resources */,
@@ -251,15 +244,14 @@
 				CFFC73EB218958C3005ED9E5 /* ViewController.swift in Sources */,
 				CFCB408C2193C98E00226F71 /* VideoCollectionViewCell.swift in Sources */,
 				CFFC73E9218958C3005ED9E5 /* AppDelegate.swift in Sources */,
-				CF0D4F80218AA8AF00C5523D /* PlayerVideoView.swift in Sources */,
-				CF01E814218BE17B00F8A438 /* PlayerVideoViewDelegate.swift in Sources */,
+				CF0D4F80218AA8AF00C5523D /* YoutubeLayoutView.swift in Sources */,
+				CF01E814218BE17B00F8A438 /* YoutubeLayoutViewDelegate.swift in Sources */,
 				CFFC73FF21895EF5005ED9E5 /* ActionBarView.swift in Sources */,
 				CFCB40892193C98E00226F71 /* SelectionBarCollectionViewCell.swift in Sources */,
 				CFCB40812193C98E00226F71 /* TitleCollectionViewCell.swift in Sources */,
 				CFCB40862193C98E00226F71 /* AutoPlayCollectionViewCell.swift in Sources */,
 				CFFC74062189900A005ED9E5 /* ContentCollectionViewCell.swift in Sources */,
 				CFCB40832193C98E00226F71 /* AdCollectionViewCell.swift in Sources */,
-				CFCB40802193C98E00226F71 /* YoutubeLayoutContentView.swift in Sources */,
 				CFCB40822193C98E00226F71 /* SubscribeCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

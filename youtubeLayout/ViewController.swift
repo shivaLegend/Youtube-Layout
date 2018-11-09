@@ -14,7 +14,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var actionBarHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var actionBarTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var playerVideoView: PlayerVideoView!
+    @IBOutlet weak var playerVideoView: YoutubeLayoutView!
     @IBOutlet weak var tabbedBarView: TabbedBarView!
     
     
@@ -117,7 +117,7 @@ extension ViewController: UIScrollViewDelegate {
     
 }
 
-extension ViewController: PlayerVideoViewDelegate {
+extension ViewController: YoutubeLayoutViewDelegate {
     func playerVideo(offset: CGFloat) {
         tabbedBarView.frame.origin.y = offset
     }

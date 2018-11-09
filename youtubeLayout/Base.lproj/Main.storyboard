@@ -59,7 +59,7 @@
                                     <constraint firstAttribute="height" constant="20" id="HaO-zC-s1G"/>
                                 </constraints>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4aN-HB-lvO" userLabel="PlayerVideoView" customClass="PlayerVideoView" customModule="youtubeLayout" customModuleProvider="target">
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4aN-HB-lvO" userLabel="PlayerVideoView" customClass="YoutubeLayoutView" customModule="youtubeLayout" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
